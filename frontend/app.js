@@ -35,6 +35,116 @@ const API_CONFIG = {
     }
 };
 
+// 研究数据配置
+let researchData = null;
+
+// 加载示例研究数据
+async function loadResearchData() {
+    try {
+        const response = await fetch('./sample_research_data.json');
+        if (response.ok) {
+            researchData = await response.json();
+            console.log('✅ 研究数据加载成功:', researchData.title);
+            return researchData;
+        } else {
+            console.log('⚠️ 示例数据文件不存在，将使用默认数据');
+            return null;
+        }
+    } catch (error) {
+        console.log('⚠️ 加载研究数据失败:', error.message);
+        return null;
+    }
+}
+
+// 渲染故事页面
+function renderStoryPage() {
+    if (!researchData) {
+        console.log('⚠️ 研究数据未加载，跳过故事页面渲染');
+        return;
+    }
+
+    console.log('📖 渲染故事页面...');
+
+    // 渲染研究项目
+    renderResearchProjects();
+
+    // 渲染平台统计
+    renderPlatformStats();
+}
+
+// 渲染研究项目
+function renderResearchProjects() {
+    const projectsGrid = document.getElementById('researchProjectsGrid');
+    if (!projectsGrid || !researchData.research_projects) return;
+
+    projectsGrid.innerHTML = researchData.research_projects.map(project => `
+        <div class="project-card animate-fade-in-up">
+            <div class="project-header">
+                <h3 class="project-title">${project.title}</h3>
+                <span class="project-domain">${project.domain.replace('_', ' ')}</span>
+            </div>
+            <div class="project-researcher">
+                <i class="fas fa-user"></i> ${project.researcher}
+            </div>
+            <div class="project-description">${project.description}</div>
+            <div class="project-stats">
+                <div class="stat-item">
+                    <i class="fas fa-eye"></i>
+                    <span>${project.impact.downloads} 次下载</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <span>${project.impact.average_rating} 评分</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-comments"></i>
+                    <span>${project.impact.peer_reviews} 评审</span>
+                </div>
+            </div>
+            <div class="blockchain-info">
+                <strong>区块链验证:</strong><br>
+                合约: ${project.blockchain_info.contract_address.substring(0, 20)}...<br>
+                NFT ID: ${project.blockchain_info.nft_token_id}<br>
+                状态: ${project.blockchain_info.verification_status}
+            </div>
+        </div>
+    `).join('');
+}
+
+// 渲染平台统计
+function renderPlatformStats() {
+    const statsContainer = document.getElementById('platformStats');
+    if (!statsContainer || !researchData.platform_statistics) return;
+
+    const stats = researchData.platform_statistics;
+    statsContainer.innerHTML = `
+        <div class="stat-metric">
+            <div class="stat-value">${stats.total_researchers}</div>
+            <div class="stat-label">注册研究者</div>
+        </div>
+        <div class="stat-metric">
+            <div class="stat-value">${stats.total_researches}</div>
+            <div class="stat-label">已发表研究</div>
+        </div>
+        <div class="stat-metric">
+            <div class="stat-value">${stats.total_datasets}</div>
+            <div class="stat-label">数据集数量</div>
+        </div>
+        <div class="stat-metric">
+            <div class="stat-value">${stats.total_reviews}</div>
+            <div class="stat-label">同行评审</div>
+        </div>
+        <div class="stat-metric">
+            <div class="stat-value">${stats.data_integrity_score * 100}%</div>
+            <div class="stat-label">数据完整性</div>
+        </div>
+        <div class="stat-metric">
+            <div class="stat-value">${stats.platform_uptime}</div>
+            <div class="stat-label">平台可用性</div>
+        </div>
+    `;
+}
+
 // API调用工具函数
 class ApiClient {
     constructor(baseUrl) {
@@ -452,6 +562,9 @@ async function init() {
 
         // 显示初始化进度
         updateConnectionStatus('connecting', '正在初始化...');
+
+        // 加载研究数据
+        await loadResearchData();
 
         // 等待ethers.js加载
         let attempts = 0;
@@ -1141,6 +1254,11 @@ function switchTab(tabName) {
         currentContent.classList.add('active');
         currentContent.style.display = 'block'; // 确保显示
         console.log('显示标签页内容:', tabName);
+
+        // 如果切换到故事标签页，渲染故事内容
+        if (tabName === 'story') {
+            setTimeout(() => renderStoryPage(), 100); // 延迟执行以确保DOM更新完成
+        }
     } else {
         console.error('找不到标签页内容:', tabName);
     }

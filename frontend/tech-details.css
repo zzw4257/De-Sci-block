@@ -1,0 +1,534 @@
+/* DeSci智能合约技术详情样式 */
+
+:root {
+    --tech-primary: #1e293b;
+    --tech-secondary: #334155;
+    --tech-accent: #06b6d4;
+    --tech-success: #10b981;
+    --tech-warning: #f59e0b;
+    --tech-error: #ef4444;
+    --tech-text: #f1f5f9;
+    --tech-text-secondary: #cbd5e1;
+    --tech-border: #475569;
+    --tech-bg: #0f172a;
+    --tech-card: #1e293b;
+}
+
+/* 技术导航 */
+.tech-nav {
+    display: flex;
+    gap: 1px;
+    background: var(--tech-border);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: var(--tech-secondary);
+    color: var(--tech-text-secondary);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.nav-btn:hover {
+    background: var(--tech-accent);
+    color: white;
+}
+
+.nav-btn.active {
+    background: var(--tech-primary);
+    color: var(--tech-accent);
+    border-bottom: 2px solid var(--tech-accent);
+}
+
+/* 技术主体 */
+.tech-main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.tech-section {
+    display: none;
+    padding: 24px;
+    animation: fadeIn 0.3s ease;
+}
+
+.tech-section.active {
+    display: block;
+}
+
+.tech-section h2 {
+    color: var(--tech-text);
+    font-size: 28px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tech-section h2 i {
+    color: var(--tech-accent);
+}
+
+.tech-section h3 {
+    color: var(--tech-text);
+    font-size: 20px;
+    margin: 32px 0 16px 0;
+    border-bottom: 1px solid var(--tech-border);
+    padding-bottom: 8px;
+}
+
+/* 架构网格 */
+.arch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.arch-card {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.arch-card:hover {
+    border-color: var(--tech-accent);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.1);
+}
+
+.arch-card h3 {
+    color: var(--tech-accent);
+    margin: 0 0 12px 0;
+    font-size: 18px;
+}
+
+.contract-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.contract-stats span {
+    background: var(--tech-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--tech-text-secondary);
+}
+
+.contract-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.feature {
+    background: var(--tech-success);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* 代码块 */
+.code-block {
+    background: #1a1a1a;
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #e6e6e6;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 16px 0;
+}
+
+/* 安全网格 */
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.security-item {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.security-item h4 {
+    color: var(--tech-success);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.security-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.security-item li {
+    color: var(--tech-text-secondary);
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+/* 审计检查 */
+.audit-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.audit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.audit-item.passed {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--tech-success);
+}
+
+.audit-item.pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--tech-warning);
+}
+
+/* Gas统计 */
+.gas-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.gas-metric {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.gas-metric h3 {
+    color: var(--tech-text);
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.metric-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--tech-accent);
+    margin-bottom: 4px;
+}
+
+.metric-value .unit {
+    font-size: 16px;
+    color: var(--tech-text-secondary);
+}
+
+.metric-label {
+    color: var(--tech-text-secondary);
+    font-size: 12px;
+}
+
+/* 优化提示 */
+.optimization-tips .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.optimization-tips .tip-card {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.optimization-tips .tip-card h4 {
+    color: var(--tech-accent);
+    margin: 0 0 12px 0;
+}
+
+.optimization-tips .tip-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.optimization-tips .tip-card li {
+    color: var(--tech-text-secondary);
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+/* 测试指标 */
+.test-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.metric-card {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.metric-card h3 {
+    color: var(--tech-text);
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+.coverage-value {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--tech-success);
+    margin-bottom: 8px;
+}
+
+.coverage-breakdown {
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    color: var(--tech-text-secondary);
+}
+
+.test-count {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--tech-accent);
+    margin-bottom: 8px;
+}
+
+.test-types {
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    color: var(--tech-text-secondary);
+}
+
+.scenario-count {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--tech-warning);
+    margin-bottom: 8px;
+}
+
+/* 测试矩阵 */
+.test-matrix {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.test-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--tech-border);
+    align-items: center;
+}
+
+.test-row:last-child {
+    border-bottom: none;
+}
+
+.test-row:hover {
+    background: rgba(6, 182, 212, 0.05);
+}
+
+.test-type {
+    color: var(--tech-text);
+    font-weight: 500;
+}
+
+.test-row span:not(.test-type) {
+    text-align: center;
+    color: var(--tech-text-secondary);
+}
+
+/* 部署配置 */
+.deployment-config {
+    margin-bottom: 32px;
+}
+
+.deployment-config .code-block {
+    margin: 16px 0;
+}
+
+/* 部署流程 */
+.deployment-process ol {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 20px 30px;
+    margin: 16px 0;
+}
+
+.deployment-process li {
+    color: var(--tech-text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* 监控工具 */
+.monitoring-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.monitoring-tools .tool {
+    background: var(--tech-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.monitoring-tools .tool h4 {
+    color: var(--tech-accent);
+    margin: 0 0 8px 0;
+}
+
+.monitoring-tools .tool p {
+    color: var(--tech-text-secondary);
+    margin: 0;
+    font-size: 14px;
+}
+
+/* 技术侧边栏 */
+.tech-sidebar {
+    width: 280px;
+    background: var(--tech-primary);
+    border-left: 1px solid var(--tech-border);
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.tech-sidebar h3 {
+    color: var(--tech-text);
+    margin: 0 0 20px 0;
+    font-size: 18px;
+}
+
+.status-metrics {
+    display: grid;
+    gap: 16px;
+}
+
+.status-metrics .metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tech-border);
+}
+
+.status-metrics .metric:last-child {
+    border-bottom: none;
+}
+
+.status-metrics .label {
+    color: var(--tech-text-secondary);
+    font-size: 14px;
+}
+
+.status-metrics .value {
+    color: var(--tech-text);
+    font-weight: 500;
+    font-family: 'Monaco', monospace;
+}
+
+.status-success {
+    color: var(--tech-success) !important;
+}
+
+.status-error {
+    color: var(--tech-error) !important;
+}
+
+.status-warning {
+    color: var(--tech-warning) !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .tech-sidebar {
+        display: none;
+    }
+
+    .tech-nav {
+        flex-wrap: wrap;
+    }
+
+    .nav-btn {
+        flex: 1 1 30%;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .arch-grid,
+    .security-grid,
+    .gas-stats,
+    .test-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-section {
+        padding: 16px;
+    }
+
+    .tech-nav {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        flex: 1;
+    }
+}
+
+/* 动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

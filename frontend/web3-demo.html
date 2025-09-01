@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeSci Web3演示 - 区块链科研平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tech-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 修复ethers库加载问题 - 优先使用CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+
+    <!-- 本地备用方案 -->
+    <script>
+        // 检查ethers是否正确加载
+        function checkEthersLoading() {
+            if (typeof ethers === 'undefined') {
+                console.warn('ethers库未从CDN加载，尝试备用方案...');
+
+                // 动态加载备用CDN
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/ethers@6.13.4/dist/ethers.umd.min.js';
+                script.onload = function() {
+                    console.log('✅ ethers库从备用CDN加载成功');
+                    if (typeof window.initApp === 'function') {
+                        window.initApp();
+                    }
+                };
+                script.onerror = function() {
+                    console.error('❌ 备用CDN也加载失败，尝试本地文件...');
+                    // 如果备用CDN也失败，尝试从本地文件加载
+                    const localScript = document.createElement('script');
+                    localScript.src = 'ethers-local.umd.min.js';
+                    localScript.onload = function() {
+                        console.log('✅ ethers库从本地文件加载成功');
+                        if (typeof window.initApp === 'function') {
+                            window.initApp();
+                        }
+                    };
+                    localScript.onerror = function() {
+                        console.error('❌ 所有ethers库加载方案都失败了');
+                        showToast('ethers库加载失败，请检查网络连接', 'error');
+                    };
+                    document.head.appendChild(localScript);
+                };
+                document.head.appendChild(script);
+            } else {
+                console.log('✅ ethers库已成功加载');
+            }
+        }
+
+        // 页面加载完成后检查
+        window.addEventListener('load', function() {
+            setTimeout(checkEthersLoading, 100);
+        });
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 头部 -->
+        <header class="header animate-fade-in-up">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-atom"></i>
+                    <h1>DeSci Web3演示平台</h1>
+                </div>
+                <div class="header-actions">
+                    <a href="tech-details.html" class="btn btn-outline">
+                        <i class="fas fa-code"></i>
+                        技术详情
+                    </a>
+                    <div class="wallet-status" id="walletStatus">
+                        <button class="btn btn-secondary" id="connectWalletBtn" onclick="connectWallet()">
+                            <i class="fas fa-wallet"></i>
+                            连接钱包
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 导航 -->
+        <nav class="nav-tabs animate-slide-in-left">
+            <button class="tab-btn active animate-bounce-in" data-tab="overview" style="animation-delay: 0.1s;">
+                <i class="fas fa-chart-line"></i>
+                <span>平台概览</span>
+            </button>
+            <button class="tab-btn animate-bounce-in" data-tab="blockchain" style="animation-delay: 0.2s;">
+                <i class="fas fa-link"></i>
+                <span>区块链状态</span>
+            </button>
+            <button class="tab-btn animate-bounce-in" data-tab="users" style="animation-delay: 0.3s;">
+                <i class="fas fa-users"></i>
+                <span>用户管理</span>
+            </button>
+            <button class="tab-btn animate-bounce-in" data-tab="datasets" style="animation-delay: 0.4s;">
+                <i class="fas fa-database"></i>
+                <span>数据集</span>
+            </button>
+            <button class="tab-btn animate-bounce-in" data-tab="demo" style="animation-delay: 0.5s;">
+                <i class="fas fa-play-circle"></i>
+                <span>Web3演示</span>
+            </button>
+        </nav>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+
+            <!-- 平台概览 -->
+            <div class="tab-content active" id="overview">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> DeSci平台概览</h2>
+                    <p class="section-description">实时展示去中心化科研平台的运行状态</p>
+                </div>
+
+                <!-- 统计卡片 -->
+                <div class="stats-grid">
+                    <div class="stat-card animate-fade-in-up">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalUsers">0</h3>
+                            <p>注册用户</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="stat-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalDatasets">0</h3>
+                            <p>数据集数量</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="stat-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="blockNumber">0</h3>
+                            <p>当前区块</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="stat-icon">
+                            <i class="fas fa-gas-pump"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="gasPrice">0</h3>
+                            <p>Gas价格</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web3优势展示 -->
+                <div class="web3-advantages animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <h3><i class="fas fa-star"></i> Web3核心优势</h3>
+                    <div class="advantages-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h4>数据不可篡改</h4>
+                            <p>所有科研数据永久记录在区块链上，任何人都无法修改或删除</p>
+                        </div>
+
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>去中心化协作</h4>
+                            <p>科学家无需通过中心机构即可直接协作，打破地域限制</p>
+                        </div>
+
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>自动化执行</h4>
+                            <p>智能合约自动处理复杂的业务逻辑，提高效率</p>
+                        </div>
+
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>完全透明</h4>
+                            <p>所有操作记录在区块链上，完全公开可追溯</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 区块链状态 -->
+            <div class="tab-content" id="blockchain">
+                <div class="section-header">
+                    <h2><i class="fas fa-link"></i> 区块链网络状态</h2>
+                    <p class="section-description">实时监控区块链网络的运行状态</p>
+                </div>
+
+                <div class="blockchain-status animate-fade-in-up">
+                    <div class="status-grid">
+                        <div class="status-card">
+                            <h4><i class="fas fa-server"></i> 网络信息</h4>
+                            <div class="status-item">
+                                <span class="label">网络名称:</span>
+                                <span class="value" id="networkName">Hardhat Local</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">链ID:</span>
+                                <span class="value" id="chainId">1337</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">RPC地址:</span>
+                                <span class="value" id="rpcUrl">http://localhost:8545</span>
+                            </div>
+                        </div>
+
+                        <div class="status-card">
+                            <h4><i class="fas fa-chart-line"></i> 区块信息</h4>
+                            <div class="status-item">
+                                <span class="label">当前区块:</span>
+                                <span class="value" id="currentBlock">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">Gas价格:</span>
+                                <span class="value" id="currentGasPrice">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">网络状态:</span>
+                                <span class="value status-online" id="networkStatus">连接中...</span>
+                            </div>
+                        </div>
+
+                        <div class="status-card">
+                            <h4><i class="fas fa-cubes"></i> 智能合约</h4>
+                            <div class="contract-list" id="contractList">
+                                <div class="contract-item">
+                                    <span class="contract-name">UserProfile</span>
+                                    <span class="contract-status status-deployed">已部署</span>
+                                </div>
+                                <div class="contract-item">
+                                    <span class="contract-name">Dataset</span>
+                                    <span class="contract-status status-deployed">已部署</span>
+                                </div>
+                                <div class="contract-item">
+                                    <span class="contract-name">DeSciPlatform</span>
+                                    <span class="contract-status status-deployed">已部署</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-activities animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <h4><i class="fas fa-history"></i> 最新区块活动</h4>
+                        <div class="activity-list" id="blockActivities">
+                            <div class="activity-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>等待区块链活动...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户管理 -->
+            <div class="tab-content" id="users">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> 用户管理系统</h2>
+                    <p class="section-description">去中心化科研用户注册和身份管理</p>
+                </div>
+
+                <div class="user-management animate-fade-in-up">
+                    <!-- 用户注册表单 -->
+                    <div class="user-form-card">
+                        <h3><i class="fas fa-user-plus"></i> 注册科研用户</h3>
+                        <form id="userRegistrationForm" onsubmit="registerUser(event)">
+                            <div class="form-group">
+                                <label for="userName">姓名</label>
+                                <input type="text" id="userName" placeholder="请输入您的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAge">年龄</label>
+                                <input type="number" id="userAge" placeholder="请输入年龄" min="18" max="120" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail">邮箱</label>
+                                <input type="email" id="userEmail" placeholder="请输入邮箱地址" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userBio">个人简介</label>
+                                <textarea id="userBio" placeholder="介绍您的研究领域和经验" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                注册用户
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 用户列表 -->
+                    <div class="users-list-card">
+                        <h3><i class="fas fa-list"></i> 已注册用户</h3>
+                        <div class="users-list" id="usersList">
+                            <div class="user-item">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="user-info">
+                                    <h4>暂无用户注册</h4>
+                                    <p>注册第一个科研用户开始体验Web3科研平台</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据集管理 -->
+            <div class="tab-content" id="datasets">
+                <div class="section-header">
+                    <h2><i class="fas fa-database"></i> 数据集管理系统</h2>
+                    <p class="section-description">科研数据资产的去中心化管理和共享</p>
+                </div>
+
+                <div class="dataset-management animate-fade-in-up">
+                    <!-- 数据集注册表单 -->
+                    <div class="dataset-form-card">
+                        <h3><i class="fas fa-plus-circle"></i> 注册新数据集</h3>
+                        <form id="datasetRegistrationForm" onsubmit="registerDataset(event)">
+                            <div class="form-group">
+                                <label for="datasetName">数据集名称</label>
+                                <input type="text" id="datasetName" placeholder="请输入数据集名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="datasetDescription">数据集描述</label>
+                                <textarea id="datasetDescription" placeholder="描述数据集的内容、来源和用途" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="datasetTags">标签</label>
+                                <input type="text" id="datasetTags" placeholder="用逗号分隔多个标签 (例如: 气候,环境,传感器)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="isPublic">访问权限</label>
+                                <select id="isPublic" required>
+                                    <option value="true">公开 (免费访问)</option>
+                                    <option value="false">私有 (付费访问)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="accessPriceGroup">
+                                <label for="accessPrice">访问价格 (ETH)</label>
+                                <input type="number" id="accessPrice" step="0.01" min="0" placeholder="0.00">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                注册数据集
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 数据集列表 -->
+                    <div class="datasets-list-card">
+                        <h3><i class="fas fa-list"></i> 已注册数据集</h3>
+                        <div class="datasets-list" id="datasetsList">
+                            <div class="dataset-item">
+                                <div class="dataset-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="dataset-info">
+                                    <h4>暂无数据集</h4>
+                                    <p>注册第一个科研数据集开始体验去中心化数据管理</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web3演示 -->
+            <div class="tab-content" id="demo">
+                <div class="section-header">
+                    <h2><i class="fas fa-play-circle"></i> Web3功能演示</h2>
+                    <p class="section-description">体验区块链技术在科学研究中的实际应用</p>
+                </div>
+
+                <div class="web3-demo animate-fade-in-up">
+                    <!-- 演示控制面板 -->
+                    <div class="demo-controls">
+                        <h3><i class="fas fa-sliders-h"></i> 演示控制</h3>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary" onclick="runFullDemo()">
+                                <i class="fas fa-play"></i>
+                                运行完整演示
+                            </button>
+                            <button class="btn btn-secondary" onclick="runUserDemo()">
+                                <i class="fas fa-user-plus"></i>
+                                用户注册演示
+                            </button>
+                            <button class="btn btn-secondary" onclick="runDatasetDemo()">
+                                <i class="fas fa-database"></i>
+                                数据集演示
+                            </button>
+                            <button class="btn btn-outline" onclick="clearDemoData()">
+                                <i class="fas fa-trash"></i>
+                                清空演示数据
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 演示步骤 -->
+                    <div class="demo-steps">
+                        <h3><i class="fas fa-list-ol"></i> 演示步骤</h3>
+                        <div class="steps-list">
+                            <div class="step-item" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>连接区块链网络</h4>
+                                    <p>建立与以太坊本地网络的连接</p>
+                                    <span class="step-status" id="step1-status">等待中</span>
+                                </div>
+                            </div>
+
+                            <div class="step-item" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>用户注册流程</h4>
+                                    <p>在区块链上注册科研用户身份</p>
+                                    <span class="step-status" id="step2-status">等待中</span>
+                                </div>
+                            </div>
+
+                            <div class="step-item" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>数据集发布</h4>
+                                    <p>发布科研数据集到区块链网络</p>
+                                    <span class="step-status" id="step3-status">等待中</span>
+                                </div>
+                            </div>
+
+                            <div class="step-item" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>访问权限控制</h4>
+                                    <p>演示去中心化的访问控制机制</p>
+                                    <span class="step-status" id="step4-status">等待中</span>
+                                </div>
+                            </div>
+
+                            <div class="step-item" data-step="5">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>数据不可篡改验证</h4>
+                                    <p>验证区块链数据的不可篡改性</p>
+                                    <span class="step-status" id="step5-status">等待中</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 演示日志 -->
+                    <div class="demo-logs">
+                        <h3><i class="fas fa-terminal"></i> 演示日志</h3>
+                        <div class="logs-container" id="demoLogs">
+                            <div class="log-entry">
+                                <span class="log-time">00:00:00</span>
+                                <span class="log-message">等待开始演示...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- 加载覆盖层 -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="loading-content">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p id="loadingText">正在连接区块链网络...</p>
+            </div>
+        </div>
+
+        <!-- 消息提示 -->
+        <div id="toastContainer" class="toast-container"></div>
+    </div>
+
+    <script src="web3-demo.js"></script>
+</body>
+</html>
