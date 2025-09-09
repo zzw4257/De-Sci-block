@@ -270,7 +270,7 @@ contract DeSciPlatform is Ownable, ReentrancyGuard {
         // Update researcher reputation
         uint256 currentReputation = userProfileContract.getUserReputation(research.researcher);
         uint256 bonusReputation = research.averageRating * 10; // Bonus based on review quality
-        userProfileContract.updateReputationByContract(research.researcher, currentReputation + bonusReputation);
+        userProfileContract.updateReputation(research.researcher, currentReputation + bonusReputation);
 
         emit ResearchPublished(_researchId, nftTokenId, research.researcher);
         emit ResearchStatusChanged(_researchId, ResearchStatus.UnderReview, ResearchStatus.Published);

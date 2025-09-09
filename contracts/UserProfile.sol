@@ -131,18 +131,6 @@ contract UserProfile is Ownable, ReentrancyGuard {
     }
 
     /**
-     * @dev Update user reputation by authorized contract
-     * @param _user Address of the user
-     * @param _reputation New reputation score
-     */
-    function updateReputationByContract(address _user, uint256 _reputation) external {
-        require(hasProfile[_user], "Profile does not exist");
-        // 允许特定合约调用此函数
-        profiles[_user].reputation = _reputation;
-        emit ReputationUpdated(_user, _reputation);
-    }
-
-    /**
      * @dev Get total number of users
      * @return Number of registered users
      */

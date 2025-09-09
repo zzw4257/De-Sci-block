@@ -83,7 +83,7 @@ contract ZKProof is Ownable, ReentrancyGuard {
         string memory _metadataHash
     ) external validProofType(_proofType) nonReentrant returns (uint256) {
         // Check if user meets minimum reputation requirement
-        ProofType storage pType = proofTypes[_proofType];
+        // ProofType storage pType = proofTypes[_proofType];
         // Note: In a real implementation, you'd check user reputation from UserProfile contract
         
         uint256 proofId = nextProofId++;
