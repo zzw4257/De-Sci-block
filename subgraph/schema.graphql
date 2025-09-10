@@ -1,0 +1,21 @@
+type Achievement @entity {
+  id: ID!
+  owner: Bytes!
+  type: String
+  year: Int
+  field: String
+  name: String
+  image: String
+  createdAt: BigInt
+}
+
+type IP @entity {
+  id: ID!
+  owner: Bytes!
+  title: String
+  isZKPVerified: Boolean
+  leadResearcher: String
+  description: String
+  image: String
+  createdAt: BigInt
+} 

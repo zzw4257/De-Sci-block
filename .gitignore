@@ -179,3 +179,4 @@ ecosystem.config.js
 # Application logs
 *.log
 logs/
+node_modules/

@@ -70,7 +70,6 @@
     "local:dev:no-blockchain": "BLOCKCHAIN_ENABLED=false node scripts/startup/start-local-dev.js",
     "local:quick": "npm run compile && npm run deploy:hardhat && npm run demo",
     "setup:local": "./scripts/utility/setup-local-dev.sh",
-    "check": "node scripts/utility/check-status.js",
     "monitor": "bash scripts/utility/monitoring.sh"
   },
   "keywords": [
@@ -93,8 +92,11 @@
     "@openzeppelin/contracts": "^5.4.0",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
     "ethers": "^6.15.0",
     "express": "^4.18.0",
+    "form-data": "^4.0.4",
+    "ipfs-http-client": "^60.0.1",
     "open": "^8.4.2"
   },
   "engines": {

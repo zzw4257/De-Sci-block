@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/Dataset.sol": {
-      "lastModificationDate": 1754963427131,
-      "contentHash": "41fcdd1ae8f56bd2549356e49da0c3de",
-      "sourceName": "contracts/Dataset.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/AchievementNFT.sol": {
+      "lastModificationDate": 1757426453349,
+      "contentHash": "9d8c6b00441265779b663c3841602f26",
+      "sourceName": "contracts/AchievementNFT.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -34,19 +34,19 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
-        "@openzeppelin/contracts/access/AccessControl.sol"
+        "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
+        "@openzeppelin/contracts/access/AccessControl.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "Dataset"
+        "AchievementNFT"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
-      "lastModificationDate": 1754929535741,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "lastModificationDate": 1757426213861,
       "contentHash": "d0e2c05f09a3aea7cd299bbd4a435ee2",
       "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
       "solcConfig": {
@@ -89,10 +89,10 @@
         "AccessControl"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1754929535903,
-      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
-      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1757426213958,
+      "contentHash": "d8f70caf0e0c77dc908176ed44812fb7",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -122,19 +122,21 @@
         }
       },
       "imports": [
-        "../utils/Context.sol"
+        "./math/Math.sol",
+        "./math/SafeCast.sol",
+        "./math/SignedMath.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "Ownable"
+        "Strings"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
-      "lastModificationDate": 1754929535909,
-      "contentHash": "190613e556d509d9e9a0ea43dc5d891d",
-      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
+      "lastModificationDate": 1757426213896,
+      "contentHash": "d2944812f454a6629f41f28d4f1d07b2",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -163,16 +165,24 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./IERC1155.sol",
+        "./extensions/IERC1155MetadataURI.sol",
+        "./utils/ERC1155Utils.sol",
+        "../../utils/Context.sol",
+        "../../utils/introspection/ERC165.sol",
+        "../../utils/Arrays.sol",
+        "../../interfaces/draft-IERC6093.sol"
+      ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "ReentrancyGuard"
+        "ERC1155"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1754929535764,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1757426213876,
       "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -211,48 +221,8 @@
         "Context"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
-      "lastModificationDate": 1754929535858,
-      "contentHash": "def1e8f7b6cac577cf2600655bf3bdf8",
-      "sourceName": "@openzeppelin/contracts/access/IAccessControl.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.4"
-      ],
-      "artifacts": [
-        "IAccessControl"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1754929535800,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1757426213901,
       "contentHash": "0906d06dca25210d4696dcef6dad2909",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -293,8 +263,48 @@
         "ERC165"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1754929535868,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
+      "lastModificationDate": 1757426213926,
+      "contentHash": "def1e8f7b6cac577cf2600655bf3bdf8",
+      "sourceName": "@openzeppelin/contracts/access/IAccessControl.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAccessControl"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1757426213934,
       "contentHash": "7074c93b1ea0a122063f26ddd1db1032",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -333,10 +343,10 @@
         "IERC165"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/DeSciPlatform.sol": {
-      "lastModificationDate": 1756533742384,
-      "contentHash": "dddfcd1fe255e69539176e3852fa6398",
-      "sourceName": "contracts/DeSciPlatform.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1757426213946,
+      "contentHash": "5ec781e33d3a9ac91ffdc83d94420412",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -366,24 +376,60 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
-        "./UserProfile.sol",
-        "./ZKProof.sol",
-        "./DeSciNFTSimple.sol",
-        "./Dataset.sol"
+        "../Panic.sol",
+        "./SafeCast.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "DeSciPlatform"
+        "Math"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/UserProfile.sol": {
-      "lastModificationDate": 1756533742384,
-      "contentHash": "1a6a7a8fb70405438d1d878b99d4ed3b",
-      "sourceName": "contracts/UserProfile.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "lastModificationDate": 1757426213955,
+      "contentHash": "2adca1150f58fc6f3d1f0a0f22ee7cca",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1757426213956,
+      "contentHash": "ae3528afb8bdb0a7dcfba5b115ee8074",
+      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -413,20 +459,101 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+        "./SafeCast.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "UserProfile"
+        "SignedMath"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/DeSciNFTSimple.sol": {
-      "lastModificationDate": 1754963500247,
-      "contentHash": "701cbc3fa321447005fa3ad2ffe99964",
-      "sourceName": "contracts/DeSciNFTSimple.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "lastModificationDate": 1757426213952,
+      "contentHash": "2133dc13536b4a6a98131e431fac59e1",
+      "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Panic"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "lastModificationDate": 1757426213886,
+      "contentHash": "5041977bbe908de2e6ed0270447f79ad",
+      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IERC1155Errors",
+        "IERC20Errors",
+        "IERC721Errors"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/Arrays.sol": {
+      "lastModificationDate": 1757426213866,
+      "contentHash": "e19f50397668e814730982e8f2aa6e56",
+      "sourceName": "@openzeppelin/contracts/utils/Arrays.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -456,22 +583,22 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+        "./Comparators.sol",
+        "./SlotDerivation.sol",
+        "./StorageSlot.sol",
+        "./math/Math.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "DeSciNFTSimple"
+        "Arrays"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/ZKProof.sol": {
-      "lastModificationDate": 1754963415583,
-      "contentHash": "dac4806b5c1bd0d9fe07c6400c865a19",
-      "sourceName": "contracts/ZKProof.sol",
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+      "lastModificationDate": 1757426213930,
+      "contentHash": "33e0e83862852391c28e4dd1b8bd9cf2",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -501,18 +628,347 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC1155"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
+      "lastModificationDate": 1757426213898,
+      "contentHash": "c514e711ead283a7c38933fd7be8aad0",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC1155Receiver.sol",
+        "../../../interfaces/draft-IERC6093.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
       ],
       "artifacts": [
-        "ZKProof"
+        "ERC1155Utils"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1754929535837,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+      "lastModificationDate": 1757426213931,
+      "contentHash": "954b62833ba591c2f2ad3354a5048f2a",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC1155.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC1155MetadataURI"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/Comparators.sol": {
+      "lastModificationDate": 1757426213875,
+      "contentHash": "0e57405a6f979853cbfeb0df3546c3a3",
+      "sourceName": "@openzeppelin/contracts/utils/Comparators.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Comparators"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/SlotDerivation.sol": {
+      "lastModificationDate": 1757426213958,
+      "contentHash": "43950136ee6a1761d2cbed39d16bb1e0",
+      "sourceName": "@openzeppelin/contracts/utils/SlotDerivation.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SlotDerivation"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
+      "lastModificationDate": 1757426213958,
+      "contentHash": "e656d64c4ce918f3d13030b91c935134",
+      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "StorageSlot"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+      "lastModificationDate": 1757426213931,
+      "contentHash": "9bb9e05bd69d13dd8c8b098ecb542e6d",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC1155Receiver"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
+      "lastModificationDate": 1757426213915,
+      "contentHash": "4cefad279a37c895b709bce2b901816e",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721Receiver.sol",
+        "../../../interfaces/draft-IERC6093.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ERC721Utils"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "lastModificationDate": 1757426213943,
+      "contentHash": "d61660a41ce200e99816e4734f7fd202",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IERC721Receiver"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "lastModificationDate": 1757426213910,
       "contentHash": "522ec023bce510c30dfbf61584f5a190",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -559,8 +1015,92 @@
         "ERC721"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
-      "lastModificationDate": 1754929535843,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1757426213941,
+      "contentHash": "f62e11dbd302e17a5621a1438f4e054c",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1757426213942,
+      "contentHash": "136c64eca25bcb8a68f43ac6605559f9",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
+      "lastModificationDate": 1757426213914,
       "contentHash": "0b00dd0d9f2738855f17aa283bfa3ff5",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
@@ -605,426 +1145,8 @@
         "ERC721URIStorage"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1754929535916,
-      "contentHash": "d8f70caf0e0c77dc908176ed44812fb7",
-      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./math/Math.sol",
-        "./math/SafeCast.sol",
-        "./math/SignedMath.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Strings"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
-      "lastModificationDate": 1754929535783,
-      "contentHash": "5041977bbe908de2e6ed0270447f79ad",
-      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.4"
-      ],
-      "artifacts": [
-        "IERC1155Errors",
-        "IERC20Errors",
-        "IERC721Errors"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1754929535877,
-      "contentHash": "f62e11dbd302e17a5621a1438f4e054c",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../utils/introspection/IERC165.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.2"
-      ],
-      "artifacts": [
-        "IERC721"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1754929535878,
-      "contentHash": "136c64eca25bcb8a68f43ac6605559f9",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../IERC721.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.2"
-      ],
-      "artifacts": [
-        "IERC721Metadata"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
-      "lastModificationDate": 1754929535844,
-      "contentHash": "4cefad279a37c895b709bce2b901816e",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../IERC721Receiver.sol",
-        "../../../interfaces/draft-IERC6093.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ERC721Utils"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
-      "lastModificationDate": 1754929535889,
-      "contentHash": "5ec781e33d3a9ac91ffdc83d94420412",
-      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../Panic.sol",
-        "./SafeCast.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Math"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
-      "lastModificationDate": 1754929535913,
-      "contentHash": "ae3528afb8bdb0a7dcfba5b115ee8074",
-      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./SafeCast.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SignedMath"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
-      "lastModificationDate": 1754929535911,
-      "contentHash": "2adca1150f58fc6f3d1f0a0f22ee7cca",
-      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SafeCast"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
-      "lastModificationDate": 1754929535907,
-      "contentHash": "2133dc13536b4a6a98131e431fac59e1",
-      "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Panic"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1754929535879,
-      "contentHash": "d61660a41ce200e99816e4734f7fd202",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IERC721Receiver"
-      ]
-    },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/interfaces/IERC4906.sol": {
-      "lastModificationDate": 1754929535875,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/interfaces/IERC4906.sol": {
+      "lastModificationDate": 1757426213939,
       "contentHash": "4386d2e9b1578157802062e156bd9ae1",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC4906.sol",
       "solcConfig": {
@@ -1066,8 +1188,8 @@
         "IERC4906"
       ]
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
-      "lastModificationDate": 1754929535868,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "lastModificationDate": 1757426213933,
       "contentHash": "947853028399b7de34bcc3704ee06e99",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC165.sol",
       "solcConfig": {
@@ -1106,8 +1228,8 @@
       ],
       "artifacts": []
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/node_modules/@openzeppelin/contracts/interfaces/IERC721.sol": {
-      "lastModificationDate": 1754929535876,
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/interfaces/IERC721.sol": {
+      "lastModificationDate": 1757426213940,
       "contentHash": "6b9716905fb42874ed1769ae7f7458b1",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC721.sol",
       "solcConfig": {
@@ -1146,8 +1268,532 @@
       ],
       "artifacts": []
     },
-    "/Users/zzw4257/Documents/ZJU_archieve/05.课程与学术资料/区块链/二轮开发/区块链层/demo/contracts/Greeter.sol": {
-      "lastModificationDate": 1754929422897,
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/ResearchDataVerifier.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "a5cb24ee885b71f7563e733a5ef769d6",
+      "sourceName": "contracts/ResearchDataVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/utils/Strings.sol",
+        "./ZKProof.sol",
+        "./Dataset.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ResearchDataVerifier"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/ZKProof.sol": {
+      "lastModificationDate": 1757425030301,
+      "contentHash": "4eaf5b9fcd7c8c34361b0812f360e1f5",
+      "sourceName": "contracts/ZKProof.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ZKProof"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/Dataset.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "41fcdd1ae8f56bd2549356e49da0c3de",
+      "sourceName": "contracts/Dataset.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/access/AccessControl.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Dataset"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1757426213949,
+      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "lastModificationDate": 1757426213954,
+      "contentHash": "190613e556d509d9e9a0ea43dc5d891d",
+      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/IPNFT.sol": {
+      "lastModificationDate": 1757426481403,
+      "contentHash": "07f82f043432261641cfa960f3eee37c",
+      "sourceName": "contracts/IPNFT.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/access/AccessControl.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IPNFT"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/DeSciPlatform.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "b0c8f516edc3260904044b295d94b7f2",
+      "sourceName": "contracts/DeSciPlatform.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "./UserProfile.sol",
+        "./ZKProof.sol",
+        "./DeSciNFTSimple.sol",
+        "./Dataset.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "DeSciPlatform"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/UserProfile.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "954374fc33cf76f7e42a3a1f1cc9b364",
+      "sourceName": "contracts/UserProfile.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "UserProfile"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/DeSciNFTSimple.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "701cbc3fa321447005fa3ad2ffe99964",
+      "sourceName": "contracts/DeSciNFTSimple.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "DeSciNFTSimple"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/ZKPVerifier.sol": {
+      "lastModificationDate": 1757425030301,
+      "contentHash": "a73c0c053b0a4c11d0d2e09d8c794cc8",
+      "sourceName": "contracts/ZKPVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ZKPVerifier"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/DataFeatureExtractor.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "404726312b570751153daed3ac5b68db",
+      "sourceName": "contracts/DataFeatureExtractor.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "DataFeatureExtractor"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/ConstraintManager.sol": {
+      "lastModificationDate": 1757425030300,
+      "contentHash": "168c97ef2b8fadfd404a1e835150ed40",
+      "sourceName": "contracts/ConstraintManager.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ConstraintManager"
+      ]
+    },
+    "/home/charlie/learn/de-sci/De-Sci-block/contracts/Greeter.sol": {
+      "lastModificationDate": 1757425030300,
       "contentHash": "d8b75260e4e0f8d78c53fcd99b846b6b",
       "sourceName": "contracts/Greeter.sol",
       "solcConfig": {
